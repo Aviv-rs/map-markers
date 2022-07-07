@@ -1,14 +1,13 @@
 import { createStore } from 'vuex'
-import contact from './modules/contact.js'
-import user from './modules/user.js'
+import markers from './modules/markers.js'
 
+// Create a new store instance.
 const storeOptions = {
     strict: true,
-    modules:{
-        contact,
-        user
+
+    modules: {
+        markers
     }
 }
-
-const store  = createStore(storeOptions)
+const store = createStore(storeOptions)
 export default store
