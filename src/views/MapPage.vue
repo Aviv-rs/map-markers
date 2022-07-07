@@ -1,7 +1,20 @@
-<template></template>
+<template>
+  <section class="map-page flex justify-center align-center">
+    <Map></Map>
+  </section>
+</template>
 
 <script>
-export default {};
+import Map from "@/components/Map.vue";
+export default {
+  components: {
+    Map,
+  },
+};
 </script>
 
-<style></style>
+<style>
+.map-page {
+  min-height: 100vh;
+}
+</style>
