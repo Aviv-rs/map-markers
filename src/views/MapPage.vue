@@ -1,7 +1,7 @@
 <template>
   <section class="map-page flex column align-center">
     <MarkerAdd></MarkerAdd>
-    <Map></Map>
+    <Map v-if="!isLoadingMarkers"></Map>
   </section>
 </template>
 
@@ -10,8 +10,14 @@ import Map from '@/components/Map.vue'
 import MarkerAdd from '../components/MarkerAdd.vue'
 
 export default {
-  created() {
-    this.$store.dispatch({ type: 'loadMarkers' })
+  async created() {
+    await this.$store.dispatch({ type: 'loadMarkers' })
+    this.isLoadingMarkers = false
+  },
+  data() {
+    return {
+      isLoadingMarkers: true,
+    }
   },
   components: {
     Map,

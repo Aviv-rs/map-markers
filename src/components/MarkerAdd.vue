@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="saveMarker()" class="marker-add">
-    <h3>Save marker at current position</h3>
+    <h2>Save marker at current position</h2>
     <label for="name">
       <input
         v-model="marker.name"
@@ -27,11 +27,16 @@ export default {
   methods: {
     saveMarker() {
       this.marker.position = this.$store.getters.currPos
-      this.$store.dispatch({ type: 'saveMarker', marker: this.marker })
+      this.$store.dispatch({ type: 'saveMarker', marker: { ...this.marker } })
       this.marker.name = ''
     },
   },
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.marker-add {
+  margin-top: 1rem;
+  margin-bottom: 10px;
+}
+</style>

@@ -1,22 +1,23 @@
 <template>
   <header>
     <div class="wrapper">
-      <NavBar />
+      <AppHeader />
       <RouterView />
     </div>
   </header>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
+import AppHeader from './components/AppHeader.vue'
+
 export default {
   async created() {},
   components: {
-    NavBar,
+    AppHeader,
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import "@/assets/style/style.scss";
+@import '@/assets/style/style.scss';
 </style>

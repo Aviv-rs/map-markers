@@ -4,7 +4,7 @@
       :center="center"
       :zoom="7"
       map-type-id="terrain"
-      style="width: 50vw; height: 600px"
+      style="width: 60vw; height: 550px"
       @click="changeMarkerPos($event)"
     >
       <GMapCluster>
@@ -15,6 +15,7 @@
           :clickable="true"
           :draggable="true"
           @click="center = m.position"
+          :title="m.name"
         />
       </GMapCluster>
       <GMapCluster>
@@ -31,7 +32,7 @@
 
 <script>
 export default {
-  beforeCreate() {
+  beforeMount() {
     this.$store.commit({
       type: 'setCurrPos',
       pos: this.center,
@@ -42,7 +43,7 @@ export default {
     return {
       center: { lat: 32.0749831, lng: 34.9120554 },
       marker: { position: { lat: 32.0749831, lng: 34.9120554 } },
-      markers: this.$store.getters.markers,
+      markers: [],
     }
   },
   methods: {
