@@ -2,20 +2,22 @@ import { storageService } from "./storage.service"
 
 export const markerService = {
     query,
-    add,
+    save,
     getEmptyMarker
 }
 
 const MARKER_KEY = 'marker'
 
 function query() {
-    return storageService.loadFromStorage(MARKER_KEY) || []
+    const markers = storageService.loadFromStorage(MARKER_KEY) || []
+    return Promise.resolve(markers)
 }
 
-function add(marker) {
-    const markers = query()
+async function save(marker) {
+    const markers = await query()
     markers.push(marker)
-    storageService.saveToStorage(markers)
+    storageService.saveToStorage(MARKER_KEY, markers)
+    return Promise.resolve()
 }
 
 function getEmptyMarker() {

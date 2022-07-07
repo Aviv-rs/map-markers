@@ -1,7 +1,7 @@
 import { markerService } from '@/services/marker.service'
 export default {
     state: {
-        markers: markerService.query(),
+        markers: [],
         currPos: {}
     },
     mutations: {
@@ -11,6 +11,9 @@ export default {
 
         setCurrPos(state, { pos }) {
             state.currPos = pos
+        },
+        saveMarker(state, { marker }) {
+            state.markers = [...state.markers, marker]
         }
     },
     actions: {
@@ -18,14 +21,11 @@ export default {
             const markers = await markerService.query()
             context.commit({ type: 'setMarkers', markers })
         },
-        async removeUser({ commit }, { userId }) {
-            await userService.remove(userId)
-            commit({ type: 'removeUser', userId })
-        },
-        async saveUser({ commit }, { user }) {
+
+        async saveMarker({ commit }, { marker }) {
             try {
-                await userService.save(user)
-                commit({ type: 'saveUser', user })
+                await markerService.save(marker)
+                commit({ type: 'saveMarker', marker })
             } catch (error) {
                 throw error
             }

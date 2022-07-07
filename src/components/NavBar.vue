@@ -6,19 +6,7 @@
   </header>
 </template>
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import { sessionService } from "../services/session.service";
-
-export default {
-  data() {
-    return {
-      user: "",
-    };
-  },
-  async created() {
-    this.user = await sessionService.loadFromStorage("currUser");
-  },
-};
+export default {}
 </script>
 
 <style lang="scss">
@@ -27,6 +15,6 @@ export default {
   text-align: center;
   border-bottom: 2px solid black;
   justify-content: space-around;
-  margin-bottom: 10px;
+  height: 60px;
 }
 </style>

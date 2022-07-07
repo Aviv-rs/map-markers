@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="$emit('markerAdded', marker)" class="marker-add">
+  <form @submit.prevent="saveMarker()" class="marker-add">
     <h3>Save marker at current position</h3>
     <label for="name">
       <input
@@ -14,20 +14,24 @@
 </template>
 
 <script>
-import { markerService } from "../services/marker.service";
 export default {
   data() {
     return {
-      marker: markerService.getEmptyMarker(),
-    };
+      marker: {
+        position: this.$store.getters.currPos,
+        name: '',
+      },
+    }
   },
-  props: {
-    position: {
-      required: false,
-      type: Number,
+
+  methods: {
+    saveMarker() {
+      this.marker.position = this.$store.getters.currPos
+      this.$store.dispatch({ type: 'saveMarker', marker: this.marker })
+      this.marker.name = ''
     },
   },
-};
+}
 </script>
 
 <style></style>

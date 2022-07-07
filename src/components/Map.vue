@@ -31,27 +31,30 @@
 
 <script>
 export default {
+  beforeCreate() {
+    this.$store.commit({
+      type: 'setCurrPos',
+      pos: this.center,
+    })
+    this.markers = this.$store.getters.markers
+  },
   data() {
     return {
       center: { lat: 32.0749831, lng: 34.9120554 },
       marker: { position: { lat: 32.0749831, lng: 34.9120554 } },
-      markers: [
-        // {
-        //   position: {
-        //     lat: 32.0749831,
-        //     lng: 34.9120554,
-        //   },
-        // },
-      ],
-    };
+      markers: this.$store.getters.markers,
+    }
   },
   methods: {
     changeMarkerPos(ev) {
-      this.marker.position = ev.latLng;
-      this.$emit("currPos", ev.latLng);
+      this.marker.position = ev.latLng
+      this.$store.commit({
+        type: 'setCurrPos',
+        pos: ev.latLng,
+      })
     },
   },
-};
+}
 </script>
 
 <style></style>

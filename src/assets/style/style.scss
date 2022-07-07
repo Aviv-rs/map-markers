@@ -2,4 +2,7 @@
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-@import './helpers'
+
+@import './variables';
+@import './helpers';
+@import './base';
